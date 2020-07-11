@@ -79,7 +79,7 @@
                         </tr>
                       </thead>
                       <tbody>
-                          @foreach ($transactions->sortDesc() as $transaction)
+                          @foreach ($user->master_transactions->sortDesc() as $transaction)
                           <tr>
                               <th scope="row">{{$transaction->trax_id}}</th>
                               {{-- <td>
@@ -115,7 +115,7 @@
                                   
                               </td>
                               <td>{{$transaction->charge}} ({{$currency}})</td>
-                              <td>{{$transaction->current_balance}} ({{$currency}})</td>
+                              <td>{{ number_format($transaction->current_balance,2) }} ({{$currency}})</td>
                               <td> {{$transaction->remarks}} </td>
                               <td>
                                   @if($transaction->status==0)
@@ -134,12 +134,14 @@
                         <td></td>
                         <td></td>
                         <td></td>
-                        <td></td>
-                        <td> <span class="text-success">Total Credited: {{$transactions->where('status',1)->sum('amount')}}  </span> </td>
-                        <td> <span class="text-danger"> Total Debited: {{$transactions->where('status',0)->sum('amount')}}   </span> </td>
+                        <td>
+                          <span class="text-primary">Total Transactions: {{$user->master_transactions->count()}}  </span> 
+                        </td>
+                        <td> <span class="text-success">Total Credited: {{number_format($user->master_transactions->where('status',1)->sum('amount'),2)}}  </span> </td>
+                        <td> <span class="text-danger"> Total Debited: {{number_format($user->master_transactions->where('status',0)->sum('amount'),2)}}   </span> </td>
                       </tfoot>
                   </table>
-                  {{$transactions->links()}}
+                    {{-- {{$user->links()}} --}}
               </div>
 
               <div class="user-interest-transaction table-responsive mt-5 mb-5 shadow-lg p-3 mb-5 bg-white rounded text-primary">
@@ -148,9 +150,9 @@
                   <thead class="thead-dark">
                     <tr>
                       {{-- <th scope="col">Transaction Id</th> --}}
-                      <th scope="col">Previous Balance</th>                      
+                      {{-- <th scope="col">Previous Balance</th>                       --}}
                       <th scope="col">Interest Rate (%)</th>
-                      <th scope="col">Current Balance</th>
+                      <th scope="col">After Interest Balance</th>
                       <th scope="col">Date</th>
                     </tr>
                   </thead>
@@ -159,16 +161,20 @@
                     <tr>
                       {{-- <th scope="row">{{$transaction->id}}</th> --}}
                       {{-- @dd($transaction->sender) --}}
-                      <td>{{number_format($transaction->user->wallet->prev_balance)}} {{$currency}}</td>
+                      {{-- <td>{{number_format($transaction->user->wallet->prev_balance)}} {{$currency}}</td> --}}
                       <td>{{$transaction->interest_rate}}</td>
-                      <td>{{number_format($transaction->user->wallet->current_balance)}} {{$currency}}</td>
+                      <td>{{number_format($transaction->amount)}} {{$currency}}</td>
                       <td>
                         {{$transaction->created_at->diffforhumans()}}
                       </td>
                     </tr>
                     @endforeach                 
                   </tbody>
-                  
+                  <tfoot>
+                    <td></td>
+                    <td>Total Bonus: {{ number_format($user->interest_transactions->sum('amount'),2) }} {{$currency}} </td>
+                    <td></td>
+                  </tfoot>
                 </table>
                 
               </div>

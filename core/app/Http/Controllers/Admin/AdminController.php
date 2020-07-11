@@ -10,6 +10,7 @@ use App\MasterTransaction;
 use App\ReferralTransaction;
 use App\Transaction;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Schema;
@@ -18,12 +19,16 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        $total_user = User::all()->count();
-        $total_transaction = MasterTransaction::all()->count();
-        $total_ref_transaction = ReferralTransaction::all()->count();
-        $total_trans_by_admin = InterestTransaction::all()->count();
-        $total_currency = Currency::all()->count();
+        $total_user = User::count();
+        $total_transaction = MasterTransaction::count();
+        $total_ref_transaction = ReferralTransaction::count();
+        $total_trans_by_admin = InterestTransaction::count();
+        $total_currency = Currency::count();
         $total_settings = count(Schema::getColumnListing('charges'))-4;
+
+        $today_transactions = MasterTransaction::whereDate('created_at',Carbon::today())->count();
+        $new_user = User::whereDate('created_at',Carbon::today())->count();
+        // dd($today_transactions);
 
         // dd($total_user);
         return view('admin.home')->with([
@@ -32,7 +37,9 @@ class AdminController extends Controller
             'total_ref_transaction' => $total_ref_transaction,
             'total_trans_by_admin' => $total_trans_by_admin,
             'total_currency' => $total_currency,
-            'total_settings' => $total_settings
+            'total_settings' => $total_settings,
+            'new_trans' =>$today_transactions,
+            'new_user'=>$new_user,
         ]);
     }
 
@@ -63,6 +70,6 @@ class AdminController extends Controller
     public function loginUsingId($id)
     {
         Auth::loginUsingId($id);
-        return redirect()->route('user.profile');
+        return redirect()->route('user.profile')->with('success','Logged In As User');
     }
 }

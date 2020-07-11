@@ -31,7 +31,7 @@ class NotificationController extends Controller
         
         $notification->save();
 
-        return redirect()->back();
+        return redirect()->back()->with('success','Updated Successfully');
      }
 
 

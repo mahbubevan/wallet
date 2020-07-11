@@ -6,7 +6,7 @@
         <table class="table">
           <thead class="thead-dark">
             <tr>
-              <th scope="col">Transaction Id</th>
+              {{-- <th scope="col">Transaction Id</th> --}}
               <th scope="col">User</th> 
               <th scope="col">Interest Rate (%)</th>                      
               <th scope="col">After Given Interest - Amount</th>
@@ -17,7 +17,7 @@
           <tbody>
             @foreach ($trans_by_admin as $transaction)
             <tr>
-              <th scope="row">{{$transaction->id}}</th>
+              {{-- <th scope="row">{{$transaction->id}}</th> --}}
               {{-- @dd($transaction->sender) --}}
               <td>{{$transaction->user->name}}</td>
               <td>

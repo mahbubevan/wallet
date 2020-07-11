@@ -29,7 +29,7 @@ class EmailController extends Controller
        
        $email->save();
 
-       return redirect()->back();
+       return redirect()->back()->with('success','Updated Successfully');
     }
 
 }

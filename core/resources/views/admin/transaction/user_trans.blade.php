@@ -3,6 +3,7 @@
 @section('content')
     <h1 class="text-center">User Transaction Log</h1>
     <div class="table-responsive shadow-lg p-3 mb-5 bg-white rounded">
+        
         <div class="row">
         </div>
         <table class="table">

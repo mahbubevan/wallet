@@ -82,6 +82,15 @@ class="list-group-item list-group-item-action  {{ Request::is("admin/transaction
                     </tr>
                   @endforeach
               </tbody>
+              <tfoot>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td> <span class="text-success">Total Credited: {{ number_format($user->master_transactions->where('status',1)->sum('amount'),2) }}  </span> </td>
+                <td> <span class="text-danger"> Total Debited: {{$user->master_transactions->where('status',0)->sum('amount')}}   </span> </td>
+              </tfoot>
           </table>
          
       </div>
@@ -92,7 +101,7 @@ class="list-group-item list-group-item-action  {{ Request::is("admin/transaction
               <thead class="thead-dark">
                 <tr>
                   {{-- <th scope="col">Transaction Id</th> --}}
-                  <th scope="col">Previous Balance</th>                      
+                  {{-- <th scope="col">Previous Balance</th>                       --}}
                   <th scope="col">Interest Rate (%)</th>
                   <th scope="col">Current Balance</th>
                   <th scope="col">Date</th>
@@ -103,9 +112,9 @@ class="list-group-item list-group-item-action  {{ Request::is("admin/transaction
                 <tr>
                   {{-- <th scope="row">{{$transaction->id}}</th> --}}
                   {{-- @dd($transaction->sender) --}}
-                  <td>{{number_format($transaction->user->wallet->prev_balance)}} {{$currency}}</td>
-                  <td>{{$transaction->interest_rate}} {{$currency}}</td>
-                  <td>{{number_format($transaction->user->wallet->current_balance)}} {{$currency}}</td>
+                  {{-- <td>{{number_format($transaction->user->wallet->prev_balance)}} {{$currency}}</td> --}}
+                  <td>{{$transaction->interest_rate}} </td>
+                  <td>{{number_format($transaction->amount)}} {{$currency}}</td>
                   <td>
                     {{$transaction->created_at->diffforhumans()}}
                   </td>
@@ -132,7 +141,7 @@ class="list-group-item list-group-item-action  {{ Request::is("admin/transaction
               </thead>
               <tbody>
                 {{-- @dd($user->bonus_from_transactions) --}}
-                @foreach ($user->bonus_from_transactions->sortByDesc('created_at') as $transaction)
+                @foreach ($user->bonus_from_transactions->sortDesc() as $transaction)
                 <tr>
                   {{-- <th scope="row">{{$transaction->id}}</th> --}}
                   {{-- @dd($transaction->sender) --}}

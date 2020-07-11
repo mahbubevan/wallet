@@ -19,7 +19,7 @@ class ResetPasswordController extends Controller
 
         if(AdminPasswordReset::where('token',$token)->where('email',$email)->count()!=1)
         {
-            return redirect()->route('admin.password.request')->with('message','Invalid Token');
+            return redirect()->route('admin.password.request')->with('error','Invalid Token');
         }
 
         return view('admin.auth.passwords.reset')->with([
@@ -44,6 +44,6 @@ class ResetPasswordController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
 
-        return redirect()->route('admin.login')->with('message','Successfully updated');
+        return redirect()->route('admin.login')->with('success','Successfully updated');
     }
 }

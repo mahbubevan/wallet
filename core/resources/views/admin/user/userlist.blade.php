@@ -6,13 +6,12 @@
     <table class="table">
         <thead class="thead-dark">
           <tr>
-            <th scope="col">#</th>
             <th scope="col">Name</th>
             <th scope="col">Username</th>
             <th scope="col">Referred By</th>
             <th scope="col">Email</th>
             <th scope="col">Wallet Balance</th>
-            <th scope="col">Last Transaction</th>
+            <th scope="col">Join Date</th>
             <th scope="col">Address</th>
             <th scope="col">City</th>
             <th scope="col">Zip</th>
@@ -22,9 +21,9 @@
           </tr>
         </thead>
         <tbody>
-            @foreach ($users as $user)
+            @foreach ($users->sortDesc() as $user)
             <tr>
-                <th scope="row">{{$user->id}}</th>
+                {{-- <th scope="row">{{$user->id}}</th> --}}
                 <td>{{$user->name}}</td>
                 <td>
                     <a href="{{route('admin.user.transaction',$user->id)}}" class="text-info">
@@ -38,10 +37,8 @@
                 @endif
                 <td>{{$user->email}}</td>
                 <td>{{$user->wallet->current_balance}}</td>
-                <td>
-                    @if($user->transactions->last())
-                    {{$user->transactions->last()->created_at->diffforhumans()}}
-                    @endif
+                <td>     
+                    {{$user->created_at->diffforhumans()}}
                 </td>
                 <td>{{$user->profile->address}}</td>
                 <td>{{$user->profile->city}}</td>
@@ -51,7 +48,7 @@
                     <img class="img-thumbnail ing-fluid" width="50px" height="50px" src="{{asset($user->profile->img)}}" alt="">
                 </td>
                 <td>
-                    <a href="{{route('admin.user.byId',$user->id)}}" class="btn btn-sm btn-outline-warning text-info">
+                    <a href="{{route('admin.user.byId',$user->id)}}" target="_blank" class="btn btn-sm btn-outline-warning text-info">
                         Logged In As User
                     </a>
                     <a href="{{route('admin.user.profile',$user->id)}}" class="btn btn-sm btn-success">
@@ -65,7 +62,6 @@
             @endforeach
         </tbody>
         <tfoot>
-            <td></td>
             <td></td>
             <td></td>
             <td></td>

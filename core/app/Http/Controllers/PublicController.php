@@ -12,7 +12,7 @@ class PublicController extends Controller
     {
         // return response()->json(['data'=>'ok']);
         $validator = Validator::make($request->all(),[
-            'name' => 'string|min:3',
+            'name' => 'bail|string|min:3',
              'from' => 'email',
             'subject' => 'max:12',
             'body' => 'max:140'

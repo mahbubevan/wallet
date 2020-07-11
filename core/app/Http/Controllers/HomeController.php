@@ -43,11 +43,11 @@ class HomeController extends Controller
 
         $headers = "From: <$sender_email> \r\n";
         $headers .= "Content-Type:text/html; charset=utf-8\r\n";
-        $msg = "<h2>Your referral link is <span style='color:green;'>$link</span><h2>";
+        $msg = "<h2>Your referral link is <span style='color:green;'><a target='_blank' href='.'$link'.'>$link</a></span><h2>";
 
         mail($email,'Referral Link',$msg,$headers);
 
-        return redirect()->back()->with('message','Successfully sent');
+        return redirect()->back()->with('success','Successfully sent');
     }
 
     public function refer()

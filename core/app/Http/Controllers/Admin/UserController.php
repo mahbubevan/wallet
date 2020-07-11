@@ -117,7 +117,7 @@ class UserController extends Controller
         $user->save();
         $profile->save();
 
-        return redirect()->back()->with('message','Updated Successfully');
+        return redirect()->back()->with('success','Updated Successfully');
     }
 
     public function destroy($id)

@@ -21,6 +21,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('assets/css/admin/admin.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body @yield('body-color')>
     <div id="app">
@@ -176,5 +177,9 @@
             </div>
         </main>
     </div>
+
+    @include('sweet.error')
+    @include('sweet.errors')
+    @include('sweet.success')
 </body>
 </html>

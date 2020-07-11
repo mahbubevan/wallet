@@ -44,6 +44,6 @@ class BonusController extends Controller
             ]);
         }
 
-        return redirect()->back()->with('message','Successfully Send');
+        return redirect()->back()->with('success','Successfully Send');
     }
 }

@@ -4,6 +4,7 @@
         <h1 class="text-center">Email</h1>
     <div class="row">
         <div class="table-responsive shadow-lg p-3 mb-5 bg-white rounded">
+            <h5>Inobx</h5>
             <table class="table">
                 <div class="row">
                     <div class="col-md-3">
@@ -21,10 +22,11 @@
                         <th scope="col">Subject</th>
                         <th scope="col">Body</th>
                         <th scope="col">Action</th>
+                        <th scope="col">Date</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @foreach ($emails as $email)
+                    @foreach ($emails->sortDesc() as $email)
                     <tr>
                         <td>{{$email->name}}</td>
                         <td>{{$email->from}}</td>
@@ -36,6 +38,8 @@
                            @else 
                            <a href="{{route('admin.email.reverse',$email->id)}}" class="btn btn-md btn-outline-danger">Un Seen</a>
                         @endif
+                        </td> 
+                        <td>{{$email->created_at->diffforhumans()}}</td>
                     </tr>
                     @endforeach
                 </tbody>

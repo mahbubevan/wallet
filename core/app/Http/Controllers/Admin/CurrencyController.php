@@ -16,6 +16,6 @@ class CurrencyController extends Controller
             'currency' => $currency
         ]);
 
-        return redirect()->back()->with('message','Currency Added');
+        return redirect()->back()->with('success','Currency Added');
     }
 }

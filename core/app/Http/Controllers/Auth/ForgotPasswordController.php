@@ -38,7 +38,7 @@ class ForgotPasswordController extends Controller
 
         if(!$user)
         {
-            return redirect()->back()->with('message','Invalid User');
+            return redirect()->back()->with('error','Invalid User');
         }
 
         PasswordReset::where('email',$user->email)->delete();
@@ -66,7 +66,7 @@ class ForgotPasswordController extends Controller
         $email = $request->email;
         // $request->validate(['code' => 'required', 'email' => 'required']);
         if (PasswordReset::where('token', $token)->where('email', $email)->count() != 1) {
-            return redirect()->route('user.password.request')->with('message','Invalid Token');
+            return redirect()->route('user.password.request')->with('error','Invalid Token');
         }
         session()->flash('verification_email', $email);
         return redirect()->route('user.password.reset', $token);

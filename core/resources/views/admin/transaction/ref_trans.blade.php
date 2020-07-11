@@ -23,8 +23,9 @@
             <tr>
               @if($transaction->sender)
                 {{-- {{$transaction->sender->name}} --}}
+                <th scope="row">{{$transaction->trax_id}}</th>
               <td>{{$transaction->sender->name}}</td>
-              <th scope="row">{{$transaction->trax_id}}</th>
+              
               {{-- @dd($transaction->sender) --}}
               
               <td>

@@ -55,8 +55,9 @@ class TransactionController extends Controller
 
     public function transaction_by_user($id)
     {
-        $user = User::findOrFail($id);
-
+        // $user = User::where('id',$id)->with('master_transactions','interest_transactions','bonus_from_transactions')->first();
+        // dd($user->id);
+        $user = User::with('master_transactions.user','bonus_from_transactions.sender','interest_transactions.user.wallet')->where('id',$id)->first();
         return view('admin.user.transaction')->with([
             'user' => $user,
             'currency' => $this->get_currency(),

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Charge;
+use App\MasterTransaction;
 use App\Notification;
 use App\Profile;
 use App\ReferralTransaction;
@@ -26,10 +27,16 @@ class ProfileController extends Controller
 
         $user = auth()->user();
         // dd($user);
-        $transactions = $user->master_transactions()->orderBy('created_at','desc')->paginate(10,['*'],'transaction');
+        // $transactions = $user->master_transactions()->orderBy('created_at','desc')->paginate(10,['*'],'transaction');
+        // $transactions = MasterTransaction::with('user.profile','user.wallet','user.interest_transactions','user.bonus_from_transactions.sender')->where('user_id',$user->id)->orderBy('created_at','desc')->paginate(10,['*'],'transaction');
+        // return response()->json(['data'=>$transactions]);
+        // dd($transactions);
+        // $user = User::where('id',$user_id)->first();
+
+        // dd($user);
         return view('user.profile')->with([
             'user' => $user,
-            'transactions' => $transactions,
+            // 'transactions' => $transactions,
             'currency' => $currency,
         ]);
     }
@@ -110,7 +117,7 @@ class ProfileController extends Controller
         if ($request->has('img')) {
 
             $validator = Validator::make($request->all(), [
-                'img' => 'mimes:jpeg,png | max:1000',
+                'img' => 'image:jpeg,png | max:1000',
             ]);
 
             
@@ -143,7 +150,7 @@ class ProfileController extends Controller
             ]);
         
         
-        return redirect()->back()->with(['message'=>'Successfully updated']);
+        return redirect()->back()->with(['success'=>'Successfully updated']);
        
     }
 

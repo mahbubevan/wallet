@@ -83,5 +83,32 @@
               </div>
         </div>
     </div>
+    <div class="row">
+      <h3>Today's Statictis</h3>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+            <div class="card-body">
+              <h5 class="card-title text-center">Transactions</h5>
+              <h3 class="card-subtitle text-center mb-2 text-muted">{{$new_trans}}</h3>
+              <div class="text-center">
+                <a href="{{route('admin.transaction')}}" class="btn btn-sm btn-outline-success card-link">View Transactions</a>
+              </div>
+            </div>
+          </div>
+    </div>
+    <div class="col">
+      <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+          <div class="card-body">
+            <h5 class="card-title text-center">Users</h5>
+            <h3 class="card-subtitle text-center mb-2 text-muted">{{$new_user}}</h3>
+            <div class="text-center">
+              <a href="{{route('admin.userlist')}}" class="btn btn-sm btn-outline-success card-link">View Users</a>
+            </div>
+          </div>
+        </div>
+  </div>
+    </div>
 </div>
 @endsection

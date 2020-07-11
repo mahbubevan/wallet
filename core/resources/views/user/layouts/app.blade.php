@@ -22,6 +22,7 @@
     @yield('login-css')
      {{-- font awesome --}}
      <script src="https://kit.fontawesome.com/bda171beb6.js" crossorigin="anonymous"></script>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 <body @yield('body-color')>
     <div id="app">
@@ -114,5 +115,9 @@
             @yield('content')
         </main>
     </div>
+
+    @include('sweet.error')
+    @include('sweet.errors')
+    @include('sweet.success')
 </body>
 </html>

@@ -53,6 +53,7 @@ class TransactionController extends Controller
     {
         // dd($request->all());
         $validator = Validator::make($request->all(),[
+            'user' => 'required|string',
             'amount' => 'required|min:10|numeric'
         ]);
 
@@ -65,17 +66,17 @@ class TransactionController extends Controller
 
         if($request->user == null || $request->amount == null)
         {
-            return redirect()->back()->with('message','Required Fields');
+            return redirect()->back()->with('error','Required Fields');
         }
 
         if(User::where('username',$request->user)->count() != 1)
         {
-            return redirect()->back()->with('message','Invalid User');
+            return redirect()->back()->with('error','Invalid User');
         }
 
         if($request->user == auth()->user()->username)
         {
-            return redirect()->back()->with('message','You Cant send money to yourself');
+            return redirect()->back()->with('error','You Cant send money to yourself');
         }
             
         
@@ -198,7 +199,7 @@ class TransactionController extends Controller
                 $rcvr_wallet->prev_balance = $rcvr_prev_update_balance;
                 $rcvr_wallet->save();
             
-            return redirect()->route('user.profile')->with('message','Successfully Sent');
+            return redirect()->route('user.profile')->with('success','Transaction Successfull');
         }else{
             return redirect()->route('user.profile')->with('error','Insufficient Balance');
         }

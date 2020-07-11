@@ -204,6 +204,8 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                        <span id="name_error" class="text-danger"> {{$name_error??''}} </span>
+                                
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <input id="from" type="email" class="form-control" placeholder="some@someone.com" name="from">
@@ -212,6 +214,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span id="from_error" class="text-danger"> {{$from_error??''}} </span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <input type="text" id="subject" class="form-control" placeholder="subject" name="subject">
@@ -220,6 +223,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span id="subject_error" class="text-danger"> {{$subject_error??''}} </span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <textarea name="body" id="body" id="" class="form-control" cols="30" rows="5">About Query</textarea>
@@ -228,6 +232,7 @@
                                             <strong>{{ $message }}</strong>
                                         </span>
                                     @enderror
+                                    <span id="about_error" class="text-danger"> {{$about_error??''}} </span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
                                     <button id="submit_button" type="submit" class="btn btn-md btn-outline-success justify-content-end">Send<span class="ml-1"><i class="far fa-paper-plane"></i></span></button>
@@ -256,7 +261,8 @@
 
     // var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content')
     $("#submit_button").click(function(){
-        // console.log('submit');
+
+                         // console.log('submit');
         var name = document.getElementById("name").value;
         var from = document.getElementById("from").value;
         var subject = document.getElementById("subject").value;
@@ -272,27 +278,59 @@
                 body:body,
             },
             success: function( result ) {
-                // console.log(result.errors)
-                var error = {};
+              var error = {};
                 if(result.errors)
                 {
                     error = {
                         name:result.errors.name,
                         from:result.errors.from,
-                        from:result.errors.subject,
-                        from:result.errors.body,
+                        subject:result.errors.subject,
+                        body:result.errors.body,
                     }
-                    var response = `<div><span class="text-danger">${error.name}</span></div><div><span class="text-danger">${error.from}</span></div><div><span class="text-danger">${error.subject}</span></div><div><span class="text-danger">${error.body}</span></div>`
-                }else{
+
+                    if(error.name !== undefined)
+                    {
+                      var name_error = `<div><span class="text-danger">${error.name}</span></div>`
+                      $("#name_error").html(name_error)
+                    }
+                    if(error.from !== undefined)
+                    {
+                      var from_error = `<div><span class="text-danger">${error.from}</span></div>`
+                      $("#from_error").html(from_error)
+                    }
+                    if(error.subject !== undefined)
+                    {
+                      var subject_error = `<div><span class="text-danger">${error.subject}</span></div>`
+                      $("#subject_error").html(subject_error)
+                    }
+                   if(error.body !== undefined)
+                    {
+                      var body_error = `<div><span class="text-danger">${error.body}</span></div>`
+                      $("#body_error").html(body_error)
+                    }
+                  }
+                  else{
                     var response = `<span class="text-success">${result.message}</span>`
-                }
-                console.log(error);
-                $("#response").html(response);
-            }
+                    console.log(error);
+                    $("#name_error").hide()
+                    $("#from_error").hide()
+                    $("#subject_error").hide()
+                    $("#body_error").hide()
+                    $("#response").html(response);
+                  }
             
+              }
+            })
+          
         })
-        })
-    })
+      })
+    
     </script>
   </body>
 </html>
+
+
+
+
+    // console.log(result.errors)
+    
