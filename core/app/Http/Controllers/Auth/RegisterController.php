@@ -148,7 +148,7 @@ class RegisterController extends Controller
                 'amount' => $ON_SIGNUP_REF_BONUS,
                 'charge' => 0,
                 'current_balance' => $refer_current_update_balance,
-                'remarks' => "Sign up referral bonus $ON_SIGNUP_REF_BONUS from $user->name",
+                'remarks' => "Sign up referral bonus",
                 'status' => MasterTransaction::CREDITED,
             ]);
         }
@@ -164,7 +164,7 @@ class RegisterController extends Controller
             'amount' => $ON_SIGNUP_BONUS,
             'charge' => 0,
             'current_balance' => $user->wallet->current_balance,
-            'remarks' => "Sign up bonus $ON_SIGNUP_BONUS",
+            'remarks' => "Sign up bonus",
             'status' => MasterTransaction::CREDITED,
         ]);
         

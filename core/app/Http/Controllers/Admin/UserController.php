@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Charge;
 use App\Http\Controllers\Controller;
+use App\InterestTransaction;
+use App\MasterTransaction;
 use App\Profile;
+use App\ReferralTransaction;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -21,11 +25,33 @@ class UserController extends Controller
 
     public function show(Profile $profile)
     {
-        // dd($profile);
-        $refers = User::where('referenced_by',$profile->user->id)->get();
+        $current_balance = $profile->user->wallet->current_balance;
+        // dd($current_balance);
+        $user_id = $profile->user->id;
+
+        // $transaction_count = MasterTransaction::where('user_id',$user_id)->count();
+
+        $total_send_balance = MasterTransaction::where('status',MasterTransaction::DEBITED)->where('user_id',$user_id)->sum('amount');
+        $total_rcv_balance = MasterTransaction::where('status',MasterTransaction::CREDITED)->where('user_id',$user_id)->sum('amount');
+
+        // $current_balance = auth()->user()->wallet->current_balance;
+
+        $total_referral_user = User::where('referenced_by',$user_id)->count();
+        $total_referral_bonus = ReferralTransaction::where('user_id',$user_id)->sum('bonus_amount');
+
+        $bonus = InterestTransaction::where('user_id',$user_id)->sum('amount');
+
+        $currency = Charge::first(['set_currency'])->set_currency;
+
         return view('admin.user.profile')->with([
             'profile' => $profile,
-            'refers' => $refers,
+            'current_balance' => $current_balance,
+            'currency' => $currency,
+            'bonus' => $bonus,
+            'total_send_balance' => $total_send_balance,
+            'total_rcv_balance' => $total_rcv_balance,
+            'total_ref_user' => $total_referral_user,
+            'total_ref_bonus' => $total_referral_bonus
         ]);
     }
 
@@ -64,14 +90,6 @@ class UserController extends Controller
                     $user->email = $request->email;
         }
 
-        if($wallet->current_balance != $request->current_balance)
-        {
-            $wallet->prev_balance = $wallet->current_balance;
-            $wallet->current_balance = $request->current_balance;
-
-            $wallet->save();
-        }
-
         $user->name = $request->name;
 
         $profile->address = $request->address;
@@ -99,13 +117,13 @@ class UserController extends Controller
             $filename = '/assets/img/' . $dateTime . '-' . $file->getClientOriginalName();
             $savePath = 'assets/img/';
             
-            $new_path = ltrim($profile->img,$profile->img[0]);
+            // $new_path = ltrim($profile->img,$profile->img[0]);
             // dd($new_path);
             // dd(File::exists($new_path));
-            if(File::exists($new_path))
-            {
-                unlink($new_path);
-            }
+            // if(File::exists($new_path))
+            // {
+            //     unlink($new_path);
+            // }
 
             $data['img'] = $filename;
             $profile->img = $data['img'];

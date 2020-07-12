@@ -198,9 +198,9 @@ class TransactionController extends Controller
                 $rcvr_wallet->prev_balance = $rcvr_prev_update_balance;
                 $rcvr_wallet->save();
             
-            return redirect()->route('user.profile')->with('success','Transaction Successfull');
+            return redirect()->route('user.dashboard')->with('success','Transaction Successfull');
         }else{
-            return redirect()->route('user.profile')->with('error','Insufficient Balance');
+            return redirect()->route('user.dashboard')->with('error','Insufficient Balance');
         }
     }
 

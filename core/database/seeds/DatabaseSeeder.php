@@ -22,12 +22,12 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // factory(User::class,10)->create();
-        factory(Admin::class, 2)->create();
+        // factory(Admin::class, 2)->create();
         // factory(Profile::class,10)->create();
         // factory(Wallet::class,10)->create();
 
-        factory(Currency::class, 1)->create();
-        factory(Charge::class, 1)->create();
+        // factory(Currency::class, 1)->create();
+        // factory(Charge::class, 1)->create();
         // factory(Transaction::class,30)->create();
         // factory(InterestTransaction::class,10)->create();
         // factory(ReferralTransaction::class, 15)->create();

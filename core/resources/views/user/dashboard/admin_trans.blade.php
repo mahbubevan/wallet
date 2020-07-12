@@ -9,7 +9,6 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">Transaction Id</th>
-            <th scope="col">Interest Rate (%)</th>
             <th scope="col">Amount</th>
             <th scope="col">Date</th>
           </tr>
@@ -18,7 +17,6 @@
             @foreach ($transactions as $transaction)
             <tr>
                 <th scope="row">{{$transaction->trax_id}}</th>
-                <td>{{$transaction->interest_rate}}</td>
                 <td>{{number_format($transaction->amount,2)}} ({{$currency}})</td>
                 <td> {{$transaction->created_at->diffforhumans()}} </td>
               </tr>

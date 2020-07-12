@@ -141,8 +141,16 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         //  Add NEw Currecy 
         Route::post('/add_new_currency','CurrencyController@store');
 
-        // Transaction By User //
+        //  By User //
         Route::get('/transaction/{id}','TransactionController@transaction_by_user')->name('user.transaction');
+        Route::get('/send_money/{id}','TransactionController@send_transaction')->name('user.send.transaction');
+        Route::get('/rcv_money/{id}','TransactionController@rcv_transaction')->name('user.rcv.transaction');
+        Route::get('/ref_trans/{id}','TransactionController@ref_transaction')->name('user.ref.transaction');
+        Route::get('/ref_list/{id}','TransactionController@ref_list')->name('user.ref.list');
+        Route::get('/admin_bonus/{id}','TransactionController@admin_trans_by_id')->name('user.admin.transaction');
+
+
+
         Route::get('/search','SearchController@index')->name('search');
         Route::post('/search','SearchController@get_data');
 
@@ -156,6 +164,10 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
         // Route::get('/notification/{id}','NotificationController@make_unseen')->name('notification.unseen');
 
         Route::get('/auth_by_id/{id}','AdminController@loginUsingId')->name('user.byId');
+
+        // Add Balance By Admin 
+        Route::post('/add_balance','TransactionController@add_balance')->name('user.add.balance');
+        Route::post('/sub_balance','TransactionController@sub_balance')->name('user.sub.balance');
     });
 });
 

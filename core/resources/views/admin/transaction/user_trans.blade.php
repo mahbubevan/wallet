@@ -33,7 +33,7 @@
                         </a>
                     </td>
                     <td>
-                        @if($transaction->status==0)
+                        @if($transaction->status==0 || $transaction->status ==2)
                             <div class="row">
                                 <div class="col-md-8">
                                     <span class="text-danger">{{number_format($transaction->amount,2)}} ({{$currency}}) </span>
@@ -58,7 +58,7 @@
                     <td>{{number_format($transaction->current_balance,2)}} ({{$currency}})</td>
                     <td> {{$transaction->remarks}} </td>
                     <td>
-                        @if($transaction->status==0)
+                        @if($transaction->status==0 || $transaction->status ==2)
                             <span class="text-danger">DEBITED</span>
                         @else
                             <span class="text-success">CREDITED</span>

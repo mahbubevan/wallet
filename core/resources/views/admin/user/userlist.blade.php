@@ -42,10 +42,10 @@
                     <img class="img-thumbnail ing-fluid" width="50px" height="50px" src="{{asset($user->profile->img)}}" alt="">
                 </td>
                 <td>
-                    <a href="{{route('admin.user.byId',$user->id)}}" target="_blank" class="btn btn-sm btn-outline-warning text-info">
+                    <a href="{{route('admin.user.byId',$user->id)}}" target="_blank" class="btn btn-sm btn-outline-warning text-info btn-block">
                         Logged In As User
                     </a>
-                    <a href="{{route('admin.user.profile',$user->id)}}" class="btn btn-sm btn-success w-50">
+                    <a href="{{route('admin.user.profile',$user->id)}}" class="btn btn-sm btn-success btn-block">
                         Edit
                     </a>
                 </td>

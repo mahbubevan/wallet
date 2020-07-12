@@ -20,6 +20,8 @@ class MasterTransaction extends Model
 
     const DEBITED = 0;
     const CREDITED = 1;
+    const DEBITED_BY_ADMIN = 2;
+    const CREDITED_BY_ADMIN = 3;
 
 
     public function user()

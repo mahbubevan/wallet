@@ -19,7 +19,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($trans_by_admin as $transaction)
+            @foreach ($transactions as $transaction)
             <tr>
               {{-- <th scope="row">{{$transaction->id}}</th> --}}
               {{-- @dd($transaction->sender) --}}
@@ -37,13 +37,12 @@
             <tr>
               <td></td>
               <td></td>
-              <td></td>
-              <th><span class="text-info">Total Amount = </span> <span style="font-size: 18px" class="text-danger">{{number_format($total_amount,2)}} ({{$currency}}) </span></th>
+              <th><span class="text-info">Total Amount = </span> <span style="font-size: 18px" class="text-danger">{{number_format($transactions->sum('amount'),2)}} ({{$currency}}) </span></th>
             </tr>
           </tfoot>
         </table>
         <div class="text-center">
-            {{$trans_by_admin->links()}}
+            {{$transactions->links()}}
         </div>
       </div>
     </div>

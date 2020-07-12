@@ -7,7 +7,7 @@
     </h5>
     <div class="row mt-3">      
         <div class="col">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                 <div class="card-body">
                   <h5 class="card-title text-center">Current Balance</h5>
                   <h3 class="card-subtitle text-center mb-2 text-muted"></h3>          
@@ -21,7 +21,7 @@
               </div>
         </div>
         <div class="col">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
                 <div class="card-body">
                   <h5 class="card-title text-center">Total Money Send</h5>
                   <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
@@ -36,7 +36,7 @@
               </div>
         </div>
         <div class="col">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
                 <div class="card-body">
                   <h5 class="card-title text-center">Total Money Receive</h5>
                   <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
@@ -57,7 +57,7 @@
   <div class="row mt-3">
      
       <div class="col">
-          <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
               <div class="card-body">
                 <h5 class="card-title text-center">Total Transactions</h5>
                 <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
@@ -70,7 +70,7 @@
             </div>
       </div>
       <div class="col">
-          <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
               <div class="card-body">
                 <h5 class="card-title text-center">Total Send Money Transactions</h5>
                 <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
@@ -83,7 +83,7 @@
             </div>
       </div>
       <div class="col">
-          <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
               <div class="card-body">
                 <h5 class="card-title text-center">Total Receive Money Transactions</h5>
                 <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
@@ -101,7 +101,7 @@
     <div class="row mt-3">
         
         <div class="col-md-4">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
                 <div class="card-body">
                   <h5 class="card-title text-center">Total Referral User</h5>
                   <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
@@ -116,7 +116,7 @@
               </div>
         </div>
         <div class="col-md-4">
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+            <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
                 <div class="card-body">
                   <h5 class="card-title text-center">Total Reffaral Bonus</h5>
                   <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
@@ -139,11 +139,11 @@
   <div class="row mt-3">
      
       <div class="col-md-4">
-          <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
               <div class="card-body">
                 <h5 class="card-title text-center">Total Bonus Transactions</h5>
                 <h3 class="card-subtitle text-center mb-2 text-muted"></h3>                 
-                <div class="text-center mt-5">
+                <div class="text-center mt-2">
                   <h5 class=""> {{$total_sys_bonus}} </h5>
                 </div>
                 <div class="text-center mt-3">
@@ -153,7 +153,7 @@
             </div>
       </div>
       <div class="col-md-4">
-          <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
+          <div class="card shadow-lg p-3 mb-5 bg-white rounded" >
               <div class="card-body">
                 <h5 class="card-title text-center">Total Bonus Amount</h5>
                 <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
