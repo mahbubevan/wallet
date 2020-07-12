@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+@section('page-title')
+    User Transactions
+@endsection
 
 @section('user-profile')
 <a href=""></a>
@@ -36,15 +39,10 @@ class="list-group-item list-group-item-action  {{ Request::is("admin/transaction
                   <tr>
                       <th scope="row">{{$transaction->trax_id}}</th>
                       <td>
-                          <a href="{{route('admin.user.profile',$transaction->user->id)}}" class="text-primary">
+                          <a href="{{route('admin.user.transaction',$transaction->user->id)}}" class="text-primary">
                               {{$transaction->user->name}}
                           </a>
                       </td>
-                      {{-- <td>
-                          <a href="{{route('admin.user.profile',$transaction->receiver->id)}}" class="text-primary">
-                              {{$transaction->receiver->name}}
-                          </a>
-                      </td> --}}
                       <td>
                           @if($transaction->status==0)
                               <div class="row">

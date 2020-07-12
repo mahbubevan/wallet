@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('page-title')
+    Admin Transaction
+@endsection
+
 @section('content')
     <h1 class="text-center">Transaction By Admin To All Users</h1>
     <div class="rcv-bonus-from-my-refe-transaction table-responsive shadow-lg p-3 mb-5 bg-white rounded">   

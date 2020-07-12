@@ -39,7 +39,7 @@ class BonusController extends Controller
                 'amount' => $bonus,
                 'charge' => 0,
                 'current_balance' => $new_balance,
-                'remarks' => "Bonus $request->bonus (%) interest by ".auth()->guard('admin')->user()->name,
+                'remarks' => "Bonus $request->bonus (%)",
                 'status' => MasterTransaction::CREDITED,
             ]);
         }

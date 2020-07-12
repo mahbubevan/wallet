@@ -4,6 +4,10 @@
     class="bg-dark"
 @endsection
 
+@section('page-title')
+    Admin Login
+@endsection
+
 @section('content')
 
 <div class="container">

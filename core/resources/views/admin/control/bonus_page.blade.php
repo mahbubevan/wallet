@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('page-title')
+    Bonus
+@endsection
+
 @section('content')
     <div class="contaiiner">
         <h3>Bonus For All User</h3>

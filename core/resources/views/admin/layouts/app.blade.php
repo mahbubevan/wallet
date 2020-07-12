@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title> @yield('page-title') </title>
 
     <!-- Scripts -->
     <script src="{{ asset('assets/js/app.js') }}" defer></script>
@@ -91,8 +91,8 @@
             @if(auth()->guard('admin')->user())
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-2 mt-5 shadow-lg pl-5 pt-5 pr-5 pb-5 mb-5 bg-white rounded h-110">                     
-                        <div class="list-group list-group-flush">
+                    <div class="col-md-2 mt-5 h-100">                     
+                        <div class="list-group list-group-flush shadow-lg mt-3 mb-5 bg-white rounded">
                             <a href="{{route('admin.dashboard')}}" class="btn list-group-item list-group-item-action {{ Request::is('admin/dashboard') ? 'active' : '' }}">
                                 
                               <div class="row">
@@ -105,7 +105,7 @@
                                 href="{{route('admin.userlist')}}"
                             >
                                 <div class="row">
-                                    <div class="col-md-10">User Log</div>
+                                    <div class="col-md-10">Users</div>
                                     <div class="col-md-2"><i class="fas fa-users"></i></div>
                                 </div>
                             </a>
@@ -113,23 +113,23 @@
                             href="{{route('admin.transaction')}}"
                             class="list-group-item list-group-item-action {{ Request::is('admin/transaction') ? 'active' : '' }}">
                                 <div class="row">
-                                    <div class="col-md-10">Transaction Log</div>
+                                    <div class="col-md-10">Transactions</div>
                                     <div class="col-md-2"><i class="fas fa-money-check-alt"></i></i></div>
                                 </div>
                             </a>
-                            <a
+                            {{-- <a
                             href="{{route('admin.ref.transaction')}}"  
                             class="list-group-item list-group-item-action  {{ Request::is('admin/ref_transaction') ? 'active' : '' }}">
                                 <div class="row">
                                     <div class="col-md-10">Referral Transaction Log</div>
                                     <div class="col-md-2"><i class="far fa-money-bill-alt"></i></div>
                                 </div>
-                            </a>
+                            </a> --}}
                             <a
                             href="{{route('admin.admin.transaction')}}" 
                             class="list-group-item list-group-item-action  {{ Request::is('admin/admin_transaction') ? 'active' : '' }}">
                                 <div class="row">
-                                    <div class="col-md-10">Transaction By Admin Log</div>
+                                    <div class="col-md-10">Bonus From System</div>
                                     <div class="col-md-2"><i class="fas fa-gifts"></i></div>
                                 </div>
                             </a>

@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('page-title')
+    Password Verify
+@endsection
+
 @section('content')
 <div class="container">
     <div class="mt-30" style="margin-top:15%">

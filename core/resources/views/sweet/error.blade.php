@@ -1,6 +1,5 @@
 @if (Session::has('error'))
     <script>
-
             const Toast = Swal.mixin({
             toast: true,
             position: 'top-end',

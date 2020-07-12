@@ -1,5 +1,8 @@
 @extends('admin.layouts.app')
 
+@section('page-title')
+    Notification
+@endsection
 @section('content')
 <h3 class="text-primary">Notifications</h3>
 <div class="rcv-bonus-from-my-refe-transaction table-responsive shadow-lg p-3 mb-5 mt-2 bg-white rounded">   

@@ -2,6 +2,9 @@
 @section('body-color')
     class="bg-success"
 @endsection
+@section('page-title')
+    User Registration
+@endsection
 @section('content')
 <div class="container">
     <div class="row justify-content-center" style="margin-top:8%">

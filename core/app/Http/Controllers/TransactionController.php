@@ -24,11 +24,10 @@ class TransactionController extends Controller
     {
         $auth_user = auth()->user()->id;
         // dd($auth_user);
-        $users = User::all()->except($auth_user);
+        // $users = User::all()->except($auth_user);
         // dd($users);
         return view('user.send_money')
-            ->with([
-                'users' => $users,
+            ->with([      
                 'username' => $username
         ]);
     }

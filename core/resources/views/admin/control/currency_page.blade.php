@@ -1,5 +1,8 @@
 @extends('admin.layouts.app')
 
+@section('page-title')
+    Currency
+@endsection
 @section('content')
 <div class="contaiiner">
     <h3>Add New Currency</h3>

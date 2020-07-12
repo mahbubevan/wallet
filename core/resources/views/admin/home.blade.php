@@ -1,8 +1,14 @@
 @extends('admin.layouts.app')
+@section('page-title')
+    Admin Dashboard
+@endsection
 
 @section('content')
 <div class="container">
-    <div class="row mt-5">
+  <h5 class="mt-5">
+     Information
+  </h5>
+    <div class="row  mt-3">
         <div class="col">
             <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
                 <div class="card-body">
@@ -83,11 +89,11 @@
               </div>
         </div>
     </div>
-    <div class="row">
-      <h3>Today's Statictis</h3>
-    </div>
-    <div class="row">
-      <div class="col">
+    <h5 class="mt-5">
+      Today's Statistics
+   </h5>
+    <div class="row mt-3">
+      <div class="col-md-4">
         <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
             <div class="card-body">
               <h5 class="card-title text-center">Transactions</h5>
@@ -98,7 +104,7 @@
             </div>
           </div>
     </div>
-    <div class="col">
+    <div class="col-md-4">
       <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 18rem;height:15rem">
           <div class="card-body">
             <h5 class="card-title text-center">Users</h5>

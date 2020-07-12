@@ -1,6 +1,10 @@
 @extends('admin.layouts.app')
 @section('content')
 
+@section('page-title')
+    Title
+@endsection
+
 <div class="container-fluid">
     <h1 class="text-center">Search Transaction</h1>
     <div class="row">

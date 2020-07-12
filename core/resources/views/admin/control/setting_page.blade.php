@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('page-title')
+    Settings
+@endsection
+
 @section('content')
     <div class="container">
         <div class="error text-center">

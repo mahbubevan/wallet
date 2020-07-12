@@ -1,4 +1,7 @@
 @extends('admin.layouts.app')
+@section('page-title')
+    Email
+@endsection
 @section('content')
     <div class="container-fluid">
         <h1 class="text-center">Email</h1>

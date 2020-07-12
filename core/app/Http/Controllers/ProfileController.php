@@ -23,21 +23,9 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $currency = Charge::all()->first()->set_currency;
-
-        $user = auth()->user();
-        // dd($user);
-        // $transactions = $user->master_transactions()->orderBy('created_at','desc')->paginate(10,['*'],'transaction');
-        // $transactions = MasterTransaction::with('user.profile','user.wallet','user.interest_transactions','user.bonus_from_transactions.sender')->where('user_id',$user->id)->orderBy('created_at','desc')->paginate(10,['*'],'transaction');
-        // return response()->json(['data'=>$transactions]);
-        // dd($transactions);
-        // $user = User::where('id',$user_id)->first();
-
-        // dd($user);
-        return view('user.profile')->with([
-            'user' => $user,
-            // 'transactions' => $transactions,
-            'currency' => $currency,
+        $profile = auth()->user()->profile;  
+        return view('user.profile_edit')->with([
+            'profile' => $profile,
         ]);
     }
 

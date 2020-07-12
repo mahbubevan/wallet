@@ -1,5 +1,9 @@
 @extends('admin.layouts.app')
 
+@section('page-title')
+    Reference Transaction
+@endsection
+
 @section('content')
     <h1 class="text-center">User Referral Transaction Log</h1>
     <div class="rcv-bonus-from-my-refe-transaction table-responsive shadow-lg p-3 mb-5 bg-white rounded">

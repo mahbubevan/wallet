@@ -36,7 +36,7 @@
               @if (Route::has('user.login'))             
                   @auth
                     <li class="nav-item">
-                        <a class="nav-link text-white" href="{{ route('user.home') }}">Profile <span class="ml-2"><i class="fas fa-user"></i></span></a>
+                        <a class="nav-link text-white" href="{{ route('user.home') }}">User Dashboard <span class="ml-2"><i class="fas fa-user"></i></span></a>
                     </li>
                   @else
                   <li class="nav-item">
@@ -77,9 +77,9 @@
           </div>
       </section>
 
-      <section id="features" class="container shadow-lg p-5 mb-5 bg-white rounded">
+      <section id="features" class="container p-5 mb-5 text-justify">
             <h3 class="card-title text-center text-success">Why choose us ?</h3>  
-            <div class="row">
+            <div class="row mt-3 mb-3">
                 <div class="col">
                     <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                         <h5 class="card-title text-center text-success"> 24/7 Support <i class="fas fa-headset"></i></h5>
@@ -145,11 +145,11 @@
             </div>
       </section>
 
-      <section id="about" class="container shadow-lg p-5 mb-5 bg-white rounded">
+      <section id="about" class="container ">
         {{-- <h6 class="display-4 text-center text-info"><u>About Us</u></h6> --}}
         <div class="row">
             <div class="col">
-                <div class="card shadow-lg p-3 mb-5 mt-5 bg-white rounded" >
+                <div class="card shadow-lg p-5 mb-5 mt-5 bg-white rounded text-justify" >
                     <h3 class="card-title text-center text-success">About us </h3>
                     <div class="card-body">
                         <p>
@@ -226,7 +226,7 @@
                                     <span id="subject_error" class="text-danger"> {{$subject_error??''}} </span>
                                 </li>
                                 <li class="list-group-item bg-dark text-white">
-                                    <textarea name="body" id="body" id="" class="form-control" cols="30" rows="5">About Query</textarea>
+                                    <textarea name="body" id="body" id="" class="form-control" cols="30" rows="5" placeholder="Your Message"></textarea>
                                     @error('body')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -328,9 +328,4 @@
     </script>
   </body>
 </html>
-
-
-
-
-    // console.log(result.errors)
     

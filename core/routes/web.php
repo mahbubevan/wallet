@@ -56,11 +56,18 @@ Route::prefix('user')->name('user.')->group(function () {
     Route::middleware('auth')->group(function(){
         ## User Homepage ###
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/dashboard','HomeController@dashboard')->name('dashboard');
+    Route::get('/transaction','HomeController@transaction')->name('transaction');
+    Route::get('/send_transaction','HomeController@send_transaction')->name('send.transaction');
+    Route::get('/rcv_transaction','HomeController@rcv_transaction')->name('rcv.transaction');
+    Route::get('/ref_bonus','HomeController@ref_transaction')->name('ref.transaction');
+    Route::get('/ref_list','HomeController@ref_list')->name('ref.list');
+    Route::get('/admin_transaction','HomeController@admin_trans')->name('admin.transaction');
 
     ### User PRofile ####
     ######################
     Route::get('/profile', 'ProfileController@index')->name('profile');
-    Route::get('/profile/{profile}/edit','ProfileController@edit')->name('profile.edit');
+    // Route::get('/profile/{profile}/edit','ProfileController@edit')->name('profile.edit');
     Route::post('/profile/{profile}','ProfileController@update')->name('profile.update');
    
     ############## SEND MONEY #############e

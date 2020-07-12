@@ -2,6 +2,9 @@
 @section('body-color')
     class="bg-primary"
 @endsection
+@section('page-title')
+    User Login
+@endsection
 @section('content')
 <div class="container">
    <div class="mt-30" style="margin-top:15%">
