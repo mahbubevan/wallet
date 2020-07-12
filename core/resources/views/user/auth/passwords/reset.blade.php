@@ -20,7 +20,7 @@
                         <label for="email" class="col-md-5 col-form-label">{{ __('E-Mail Address') }}<span class="ml-2"><i class="text-md-right fas fa-envelope"></i></span> </label>
 
                         <div class="col-md-7">
-                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
+                            <input readonly id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ $email ?? old('email') }}" required autocomplete="email" autofocus>
 
                             @error('email')
                                 <span class="invalid-feedback" role="alert">

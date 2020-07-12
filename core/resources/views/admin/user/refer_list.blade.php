@@ -22,7 +22,7 @@
           @foreach ($ref_users as $user)
           <tr>
               <th scope="row">{{$user->name}}</th>
-              <td>{{$user->usernamename}}</td>
+              <td>{{$user->username}}</td>
               <td>
                  {{$user->email}}
               </td>

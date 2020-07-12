@@ -1,5 +1,7 @@
 @extends('user.home')
-
+@section('page-title')
+    System Bonus
+@endsection
 @section('user-home')
 <h1 class="text-center">Bonus From System</h1>
 <div class="container-fluid table-responsive shadow-lg p-3 mb-5 bg-white rounded">   

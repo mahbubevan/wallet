@@ -1,5 +1,7 @@
 @extends('user.layouts.app')
-
+@section('page-title')
+    User Dashboard
+@endsection
 @section('content')
     <div class="container-fluid">
         <div class="row">

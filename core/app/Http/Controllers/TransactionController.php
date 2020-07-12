@@ -148,16 +148,7 @@ class TransactionController extends Controller
                 $refer_id = null;    // dd($refer_id);
             }
 
-            // Transaction Both For Sender and Rcvr. 
-
-            Transaction::create([
-                'user_id' => $sender_id,
-                'rcvr' => $rcvr_id,
-                'amount' => $amount,
-                'charge' => $charge['charge'],
-            ]);
-
-            
+           
             $sender_name = $sender_wallet->user->name;
             $rcvr_name = $rcvr_wallet->user->name;
             $sender_username = $sender_wallet->user->username;

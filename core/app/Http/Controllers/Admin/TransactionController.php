@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\InterestTransaction;
 use App\MasterTransaction;
 use App\ReferralTransaction;
-use App\Transaction;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;

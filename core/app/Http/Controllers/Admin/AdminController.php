@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\InterestTransaction;
 use App\MasterTransaction;
 use App\ReferralTransaction;
-use App\Transaction;
 use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;

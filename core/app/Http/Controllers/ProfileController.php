@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Charge;
-use App\MasterTransaction;
+
 use App\Notification;
 use App\Profile;
-use App\ReferralTransaction;
-use App\Transaction;
-use App\User;
-use App\Wallet;
+
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Validator;

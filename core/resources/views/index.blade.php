@@ -63,10 +63,9 @@
         </div>
       </nav>
       
-      <section class="main">
-        <div class="jumbotron jumbotron-fluid text-white h-100">
+      <section class="">
+        {{-- <div class="jumbotron jumbotron-fluid text-white h-100">
             <div class="container">
-              {{-- <h1 class="display-4">My Wallet</h1> --}}
               <div class="">
                 <p class="lead alert alert-success w-50">Transfer Money Worldwide In A Moment <span><i class="far fa-paper-plane"></i></span> </p>
                 <p class="lead alert alert-danger w-50">We Ensure Secure Transfer <span class="ml-3"><i class="fas fa-user-secret"></i></span> </p>
@@ -74,6 +73,59 @@
                 <p class="lead alert alert-danger w-50">We Ensure Secure Transfer <span class="ml-3"><i class="fas fa-user-secret"></i></span> </p>
               </div>
             </div>
+          </div> --}}
+          <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+              <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="d-block w-100" src="assets/img/slider3.jpg" height="900px" alt="First slide">
+                <div class="carousel-caption d-none d-md-block">
+                  <h5><p class="lead alert alert-success w-50">Transfer Money Worldwide In A Moment <span><i class="far fa-paper-plane"></i></span> </p>
+                    <p class="lead alert alert-danger w-50">We Ensure Secure Transfer <span class="ml-3"><i class="fas fa-user-secret"></i></span> </p>
+                    <p class="lead alert alert-success w-50">Transfer Money Worldwide In A Moment <span><i class="far fa-paper-plane"></i></span> </p>
+                    <p class="lead alert alert-danger w-50">We Ensure Secure Transfer <span class="ml-3"><i class="fas fa-user-secret"></i></span> </p>
+                  </h5>
+                  <p>...</p>
+                </div>
+              </div>
+
+
+              <div class="carousel-item">
+                <img class="d-block w-100 h-50" src="assets/img/slider2.jpg" height="900px" alt="Second slide">
+                <div class="carousel-caption d-none d-md-block justify-content-center">
+                  <h5><p class="lead alert alert-success w-50">Transfer Money Worldwide In A Moment <span><i class="far fa-paper-plane"></i></span> </p>
+                    <p class="lead alert alert-danger w-50">We Ensure Secure Transfer <span class="ml-3"><i class="fas fa-user-secret"></i></span> </p>
+                    <p class="lead alert alert-success w-50">Transfer Money Worldwide In A Moment <span><i class="far fa-paper-plane"></i></span> </p>
+                    <p class="lead alert alert-danger w-50">We Ensure Secure Transfer <span class="ml-3"><i class="fas fa-user-secret"></i></span> </p>
+                  </h5>
+                  <p>...</p>
+                </div>
+              </div>
+
+              <div class="carousel-item">
+                <img class="d-block w-100 h-50" src="assets/img/jumbotron.jpg" height="900px" alt="Third slide">
+                <div class="carousel-caption d-none d-md-block justify-content-center">
+                  <h5><p class="lead alert alert-success w-50">Transfer Money Worldwide In A Moment <span><i class="far fa-paper-plane"></i></span> </p>
+                    <p class="lead alert alert-danger w-50">We Ensure Secure Transfer <span class="ml-3"><i class="fas fa-user-secret"></i></span> </p>
+                    <p class="lead alert alert-success w-50">Transfer Money Worldwide In A Moment <span><i class="far fa-paper-plane"></i></span> </p>
+                    <p class="lead alert alert-danger w-50">We Ensure Secure Transfer <span class="ml-3"><i class="fas fa-user-secret"></i></span> </p>
+                  </h5>
+                  <p>...</p>
+                </div>
+              </div>
+            </div>
+            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
       </section>
 
