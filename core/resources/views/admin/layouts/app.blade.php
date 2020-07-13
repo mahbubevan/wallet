@@ -143,7 +143,7 @@
                             </a>
                             <a
                             href="{{route('admin.check.emails')}}" 
-                            class="list-group-item list-group-item-action  {{ Request::is('admin/email') ? 'active' : '' }}">
+                            class="list-group-item list-group-item-action  {{ Request::is('admin/emails') ? 'active' : '' }}">
                                 <div class="row">
                                     
                                     <div class="col-md-10">Email <span class="ml-5 text-danger"> @if ($email_count>0)

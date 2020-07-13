@@ -5,7 +5,7 @@
     <div class="rcv-bonus-from-my-refe-transaction table-responsive mt-5 mb-5 shadow-lg p-3 mb-5 bg-white rounded text-success">
         <div class="mt-2 ml-2">
             <h5>User Name: <a href="{{route('admin.user.profile',$id)}}" class="text-primary text-uppercase">
-              {{$transactions->first()->benefit_user->username}}
+              {{$transactions->first()->benefit_user->username??''}}
           </a></h5>
           </div>
       <h2 class="text-center"><u>Referral Bonus</u></h2>

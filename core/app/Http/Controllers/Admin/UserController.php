@@ -17,7 +17,7 @@ class UserController extends Controller
 {
     public function dashboard()
     {
-        $users = User::paginate(10,['*'],'user_page');
+        $users = User::with('profile','wallet','referred_by')->paginate(10,['*'],'user_page');
         return view('admin.user.userlist')->with([
             'users' => $users,
         ]);

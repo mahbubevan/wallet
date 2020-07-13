@@ -25,6 +25,7 @@ class CreateInterestTransactionsTable extends Migration
                 ->onDelete('CASCADE');
             $table->string('trax_id');
             $table->double('interest_rate')->default(InterestTransaction::INTEREST_RATE);
+            $table->double('bonus');
             $table->double('amount');
 
             $table->timestamps();

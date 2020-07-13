@@ -153,6 +153,7 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/search','SearchController@index')->name('search');
         Route::post('/search','SearchController@get_data');
+        Route::post('/user_search','SearchController@get_user_data');
 
         // Notification 
         Route::get('/notification','NotificationController@notification')->name('notification');

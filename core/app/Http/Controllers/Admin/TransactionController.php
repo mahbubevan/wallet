@@ -25,7 +25,7 @@ class TransactionController extends Controller
 
     public function admin_trans()
     {
-        $transactions = InterestTransaction::with('user')->orderBy('created_at','desc')->paginate(10);
+        $transactions = InterestTransaction::with('user','admin')->orderBy('created_at','desc')->paginate(10);
         // dd($transactions);
         return view('admin.transaction.admin_trans')->with(['transactions'=>$transactions,'currency'=>$this->get_currency()]);
     }

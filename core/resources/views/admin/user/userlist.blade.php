@@ -5,6 +5,9 @@
 @section('content')
 <h1 class="text-center">User Log</h1>
 <div class="table-responsive shadow-lg p-3 mb-5 bg-white rounded">
+    {{-- <div>
+        <input type="text" id="search_input" placeholder="search" class="form-control w-25 p-3 m-right mb-2">
+    </div> --}}
     <table class="table">
         <thead class="thead-dark">
           <tr>
@@ -18,7 +21,7 @@
             <th scope="col">Action</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="search-result">
             @foreach ($users->sortDesc() as $user)
             <tr>
                 {{-- <th scope="row">{{$user->id}}</th> --}}
@@ -64,34 +67,16 @@
         </tfoot>
     </table>
     <div class="text-center">
+        {{-- {{dd($users->links())}} --}}
         {{$users->links()}}
     </div>
 </div>
 @endsection
 
 @push('jquery')
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-{{-- 
-<script src="">
-        function deleteAlert()
-        {
-            Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.value) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                    }
-                })
-        }
-</script> --}}
+@push('jquery')
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script src="{{asset('assets/js/user-search.js') }}"></script>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+@endpush
 @endpush

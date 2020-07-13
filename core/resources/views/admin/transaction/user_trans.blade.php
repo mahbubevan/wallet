@@ -71,7 +71,14 @@
             </tbody>
         </table>
         <div class="text-center">
+            {{-- {{dd($transactions->nextPageUrl())}} --}}
             {{$transactions->links()}}
+            {{-- <a href="{{$transactions->previousPageUrl()}}" 
+                class="btn btn-sm btn-primary"
+                >
+                Previous
+            </a>
+            <a href="{{$transactions->nextPageUrl()}}" class="btn btn-sm btn-primary">Next</a> --}}
         </div>
     </div>
 @endsection

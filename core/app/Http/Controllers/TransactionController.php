@@ -82,7 +82,9 @@ class TransactionController extends Controller
 
         $amount = $request->amount;
         // dd($amount);
-        if($this->checkAvailableBalance($amount)){
+        if(!$this->checkAvailableBalance($amount)){
+            return redirect()->route('user.dashboard')->with('error','Insufficient Balance');
+        }
             $charge = $this->get_charge($amount);
             // dd($charge);
             
@@ -190,55 +192,10 @@ class TransactionController extends Controller
                 $rcvr_wallet->save();
             
             return redirect()->route('user.dashboard')->with('success','Transaction Successfull');
-        }else{
-            return redirect()->route('user.dashboard')->with('error','Insufficient Balance');
-        }
+        
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Transaction $transaction)
-    {
-        //
-    }
+  
 
     protected function checkAvailableBalance($amount)
     {

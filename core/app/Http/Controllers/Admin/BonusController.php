@@ -4,9 +4,11 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\InterestTransaction;
+use App\Mail\SystemBonus;
 use App\MasterTransaction;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
 
 class BonusController extends Controller
@@ -31,6 +33,7 @@ class BonusController extends Controller
                 'trax_id' => $trax_id,
                 'interest_rate' => $request->bonus,
                 'amount'    => $new_balance,
+                'bonus' => $bonus,
             ]);
 
             MasterTransaction::create([
@@ -39,10 +42,18 @@ class BonusController extends Controller
                 'amount' => $bonus,
                 'charge' => 0,
                 'current_balance' => $new_balance,
-                'remarks' => "Bonus $request->bonus (%) by admin",
+                'remarks' => "Bonus $bonus on $request->bonus (%) by admin",
                 'status' => MasterTransaction::CREDITED,
             ]);
+
+            $interest_transaction = InterestTransaction::where('trax_id',$trax_id)->first();
+            
+            // $when = now()->addSeconds(30);
+            // Mail::to($user->email)->queue(new SystemBonus($interest_transaction));
+            Mail::to($user->email)->send(new SystemBonus($interest_transaction));
         }
+
+
 
         return redirect()->back()->with('success','Successfully Send');
     }

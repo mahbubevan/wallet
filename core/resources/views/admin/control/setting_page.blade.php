@@ -41,7 +41,7 @@
                                 type="text" 
                                 class="form-control @error('percent_charge') is-invalid @enderror" 
                                 name="percent_charge" 
-                                value="{{$settings->fixed_charge}}"
+                                value="{{$settings->percent_charge}}"
                                 autofocus/>
         
                         @error('percent_charge')

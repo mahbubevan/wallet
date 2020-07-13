@@ -5,7 +5,7 @@
 <div class="table-responsive shadow-lg p-3 mb-5 bg-white rounded">
     <div class="mt-2 ml-2">
         <h5>User Name: <a href="{{route('admin.user.profile',$id)}}" class="text-primary text-uppercase">
-          {{$transactions->first()->username}}
+          {{$transactions->first()->username??''}}
       </a></h5>
       </div>
     <table class="table">

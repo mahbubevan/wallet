@@ -12,7 +12,7 @@ class InterestTransaction extends Model
     const INTEREST_RATE = 10;
 
     protected $dates = ['deleted_at'];
-    protected $fillable = ['user_id','admin_id','interest_rate','amount','trax_id'];
+    protected $fillable = ['user_id','admin_id','interest_rate','amount','trax_id','bonus'];
 
     public function user()
     {

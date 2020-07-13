@@ -105,7 +105,7 @@
               <div class="col-md-4">
                   <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                       <div class="card-body">
-                        <h5 class="card-title text-center">Add Balance</h5>
+                        <h5 class="card-title text-center">Add Balance <span class="ml-2 text-primary">(<i class="fas fa-plus"></i>)</span> </h5>
                         <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
 
                         <form action="{{route('admin.user.add.balance')}}" method="post">
@@ -124,7 +124,7 @@
               <div class="col-md-4">
                 <div class="card shadow-lg p-3 mb-5 bg-white rounded">
                     <div class="card-body">
-                      <h5 class="card-title text-center">Substract Balance</h5>
+                      <h5 class="card-title text-center">Substract Balance <span class="ml-2 text-danger">(<i class="fas fa-minus"></i>)</span></h5>
                       <h3 class="card-subtitle text-center mb-2 text-muted"></h3>
                       
                       <div class="text-center mt-5">

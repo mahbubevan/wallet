@@ -11,6 +11,7 @@
         <thead class="thead-dark">
           <tr>
             <th scope="col">Transaction Id</th>
+            <th scope="col">Bonus</th>
             <th scope="col">Amount</th>
             <th scope="col">Date</th>
           </tr>
@@ -19,6 +20,7 @@
             @foreach ($transactions as $transaction)
             <tr>
                 <th scope="row">{{$transaction->trax_id}}</th>
+                <td>{{number_format($transaction->bonus,2)}} ({{$currency}})</td>
                 <td>{{number_format($transaction->amount,2)}} ({{$currency}})</td>
                 <td> {{$transaction->created_at->diffforhumans()}} </td>
               </tr>

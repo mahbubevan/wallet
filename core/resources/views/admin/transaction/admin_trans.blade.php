@@ -13,6 +13,7 @@
               {{-- <th scope="col">Transaction Id</th> --}}
               <th scope="col">User</th> 
               <th scope="col">Interest Rate (%)</th>                      
+              <th scope="col">Bonus</th>                      
               <th scope="col">After Given Interest - Amount</th>
               <th scope="col">Given By Admin</th>
               <th scope="col">Date</th>
@@ -27,7 +28,8 @@
               <td>
                   {{$transaction->interest_rate}}     
               </td>
-              <td>{{number_format($transaction->user->wallet->current_balance,2)}} ({{$currency}})</td>
+              <td>{{number_format($transaction->bonus,2)}} ({{$currency}})</td>
+              <td>{{number_format($transaction->amount,2)}} ({{$currency}})</td>
               <td>{{$transaction->admin->name}}</td>
               <td>{{$transaction->created_at->diffforhumans()}}</td>
             </tr>
