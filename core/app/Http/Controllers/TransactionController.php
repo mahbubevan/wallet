@@ -81,12 +81,12 @@ class TransactionController extends Controller
         
 
         $amount = $request->amount;
-        // dd($amount);
+       
         if(!$this->checkAvailableBalance($amount)){
             return redirect()->route('user.dashboard')->with('error','Insufficient Balance');
         }
             $charge = $this->get_charge($amount);
-            // dd($charge);
+           
             
             //Sender Details ;
             $sender_id = auth()->user()->id;
@@ -94,49 +94,48 @@ class TransactionController extends Controller
             $sender_current_balance = $sender_wallet->current_balance;
             $sender_current_update_balance = $charge['current_balance'];
             $sender_prev_update_balance = $sender_current_balance;
-            // dd($sender_prev_update_balance);
-
-            // Receiver Details : 
+           
+            
             $rcvr_id = User::where('username',$request->user)->first()->id;
             $rcvr_wallet = Wallet::where('user_id',$rcvr_id)->first();
             $rcvr_current_balance =$rcvr_wallet->current_balance;
-            // dd($rcvr_current_balance);
+            
             $rcvr_current_update_balance = $rcvr_current_balance + $amount;
             $rcvr_prev_update_balance = $rcvr_current_balance;
-            // dd($rcvr_prev_update_balance);
+            
 
             // Referal Details;
             $refer_id = User::where('id',$sender_id)->first()->referenced_by;
             if($refer_id!=null)
             {
-                // dd('I am ok to go');
+               
                 $refer_wallet = Wallet::where('user_id',$refer_id)->first();
                 $refer_current_balance = $refer_wallet->current_balance;
-                // dd($refer_current_balance);
+               
                 $bonus = Charge::all()->first()->on_money_send_bonus;
                 $ON_MONEY_SEND_BONUS = ( $bonus * $refer_current_balance)/100;
                 $refer_current_update_balance = $refer_current_balance + $ON_MONEY_SEND_BONUS;
-                // dd($refer_current_update_balance);
+              
                 $refer_prev_update_balance = $refer_current_balance;
                 $trax_id = $refer_wallet->user->username.Str::random(8).$sender_wallet->user->username;
-                ReferralTransaction::create([
-                    'user_id' => $refer_id,
-                    'trax_id' => $trax_id,
-                    'transaction_by' => $sender_id,
-                    'bonus_amount' => $ON_MONEY_SEND_BONUS,
-                    'status' => ReferralTransaction::ON_MONEY_SEND_STATUS,
-                ]);
 
-                
-                MasterTransaction::create([
-                    'user_id' => $refer_id,
-                    'trax_id' => $trax_id,
-                    'amount' => $ON_MONEY_SEND_BONUS,
-                    'charge' => 0,
-                    'current_balance' => $refer_current_update_balance,
-                    'remarks' => "Referral Bonus $bonus (%) interest by ".$sender_wallet->user->name." On Money Send",
-                    'status' => MasterTransaction::CREDITED,
-                ]);
+                $referral_transaction = new ReferralTransaction();
+                $referral_transaction->user_id = $refer_id;
+                $referral_transaction->trax_id = $trax_id;
+                $referral_transaction->transaction_by = $sender_id;
+                $referral_transaction->bonus_amount = $ON_MONEY_SEND_BONUS;
+                $referral_transaction->status = ReferralTransaction::ON_MONEY_SEND_STATUS;
+                $referral_transaction->save();
+
+                $master_transaction = new MasterTransaction();
+                $master_transaction->user_id = $refer_id;
+                $master_transaction->trax_id = $trax_id;
+                $master_transaction->amount = $ON_MONEY_SEND_BONUS;
+                $master_transaction->charge = 0;
+                $master_transaction->current_balance = $refer_current_update_balance;
+                $master_transaction->remarks = "Referral Bonus $bonus (%) interest by ".$sender_wallet->user->name." On Money Send";
+                $master_transaction->status = MasterTransaction::CREDITED;
+                $master_transaction->save();
 
                
 
@@ -147,7 +146,7 @@ class TransactionController extends Controller
 
 
             }else{
-                $refer_id = null;    // dd($refer_id);
+                $refer_id = null; 
             }
 
            
@@ -157,25 +156,24 @@ class TransactionController extends Controller
             $rcvr_username = $rcvr_wallet->user->username;
             $trx_id = $sender_username.Str::random(6).$rcvr_username;
 
-            MasterTransaction::create([
-                'user_id' => $sender_id,
-                'trax_id' => $trx_id,
-                'amount' => $amount,
-                'charge' => $charge['charge'],
-                'current_balance' => $sender_current_update_balance,
-                'remarks' => "$sender_name sent to $rcvr_name",
-                'status' => MasterTransaction::DEBITED,
-            ]);
+            $master_transaction = new MasterTransaction();
+            $master_transaction->user_id = $sender_id;
+            $master_transaction->trax_id = $trx_id;
+            $master_transaction->amount = $amount;
+            $master_transaction->charge = $charge['charge'];
+            $master_transaction->current_balance = $sender_current_update_balance;                $master_transaction->remarks = "$sender_name sent to $rcvr_name";
+            $master_transaction->status = MasterTransaction::DEBITED;
+            $master_transaction->save();
 
-            MasterTransaction::create([
-                'user_id' => $rcvr_id,
-                'trax_id' => $trx_id,
-                'amount' => $amount,
-                'charge' => 0,
-                'current_balance' => $rcvr_current_balance + $amount,
-                'remarks' => "$rcvr_name receive from $sender_name",
-                'status' => MasterTransaction::CREDITED,
-            ]);
+            $master_transaction = new MasterTransaction();
+            $master_transaction->user_id = $rcvr_id;
+            $master_transaction->trax_id = $trx_id;
+            $master_transaction->amount = $amount;
+            $master_transaction->charge = 0;
+            $master_transaction->current_balance = $rcvr_current_balance + $amount;
+            $master_transaction->remarks = "$rcvr_name receive from $sender_name";
+            $master_transaction->status = MasterTransaction::CREDITED;
+            $master_transaction->save();
 
             Notification::create([
                 'description' => "<div><h3>Title: New Transaction</h3></div><div><h5>Sender Name:<span class='text-danger'> $sender_name</span></h5></div><div><h5>Receiver Name:<span class='text-info'> $rcvr_name</span></h5></div><div><h5>Amount: <span class='text-primary'> $amount</span></h5></div><div><h5>Transaction ID:<span class='text-success'> $trx_id</span></h5></div>",

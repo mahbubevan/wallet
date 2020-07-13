@@ -23,6 +23,16 @@ class TransactionController extends Controller
         ]);
     }
 
+    public function ref_trans()
+    {
+        $transactions = ReferralTransaction::with('sender','benefit_user')->orderBy('created_at','desc')->paginate(10);
+        return view('admin.transaction.ref_trans')->with(
+            [
+                'transactions'=>$transactions,
+                'currency'=>$this->get_currency()
+            ]);
+    }
+
     public function admin_trans()
     {
         $transactions = InterestTransaction::with('user','admin')->orderBy('created_at','desc')->paginate(10);

@@ -27,24 +27,24 @@ class BonusController extends Controller
 
             $trax_id = $user->username.Str::random(8).auth()->guard('admin')->user()->username;
 
-            InterestTransaction::create([
-                'user_id' => $user->id,
-                'admin_id' => auth()->guard('admin')->user()->id,
-                'trax_id' => $trax_id,
-                'interest_rate' => $request->bonus,
-                'amount'    => $new_balance,
-                'bonus' => $bonus,
-            ]);
+            $interest_transaction = new InterestTransaction();
+            $interest_transaction->user_id = $user->id;
+            $interest_transaction->admin_id = auth()->guard('admin')->user()->id;
+            $interest_transaction->trax_id = $trax_id;
+            $interest_transaction->interest_rate = $request->bonus;
+            $interest_transaction->amount = $new_balance;
+            $interest_transaction->bonus = $bonus;
+            $interest_transaction->save();
 
-            MasterTransaction::create([
-                'user_id' => $user->id,
-                'trax_id' => $trax_id,
-                'amount' => $bonus,
-                'charge' => 0,
-                'current_balance' => $new_balance,
-                'remarks' => "Bonus $bonus on $request->bonus (%) by admin",
-                'status' => MasterTransaction::CREDITED,
-            ]);
+            $master_transaction = new MasterTransaction();
+            $master_transaction->user_id = $user->id;
+            $master_transaction->trax_id = $trax_id;
+            $master_transaction->amount = $bonus;
+            $master_transaction->charge = 0;
+            $master_transaction->current_balance = $new_balance;
+            $master_transaction->remarks = "Bonus $bonus on $request->bonus (%) by admin";
+            $master_transaction->status = MasterTransaction::CREDITED;
+            $master_transaction->save();
 
             $interest_transaction = InterestTransaction::where('trax_id',$trax_id)->first();
             

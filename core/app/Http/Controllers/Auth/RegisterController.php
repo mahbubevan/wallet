@@ -93,7 +93,6 @@ class RegisterController extends Controller
         // dd(if($data['reference_by']!=null));
         if($data['reference_by']!=null){
             if(User::where('username',$data['reference_by'])->count()!=1){
-                // return redirect()->intended($this->redirectPath());
                 $data['reference_by'] = null;
             }else{
                 $ref_id = User::where('username',$data['reference_by'])->first()->id;
@@ -112,61 +111,65 @@ class RegisterController extends Controller
                 $refer_wallet->save();
             }
         }
-        
+  
+        $new_user = new User();
+        $new_user->name = $data['name'];
+        $new_user->username = $make_username;
+        $new_user->referenced_by = $data['reference_by'];
+        $new_user->email = $data['email'];
+        $new_user->password = Hash::make($data['password']);
+        $new_user->save();
 
-        $new_user = User::create([
-            'name' => $data['name'],
-            'username' => $make_username,
-            'referenced_by' => $data['reference_by'],
-            'email' => $data['email'],
-            'password' => Hash::make($data['password']),
-        ]);
 
-        // dd(User::where('username',$make_username)->first()->id);
         $user = User::where('username',$make_username)->first();
 
-        Wallet::create([
-            'user_id' => $user->id,
-            'current_balance' => $ON_SIGNUP_BONUS,
-            'prev_balance' => Wallet::PREV_BALANCE,
-        ]);
+        $wallet = new Wallet();
+        $wallet->user_id = $user->id;
+        $wallet->current_balance = $ON_SIGNUP_BONUS;
+        $wallet->prev_balance = Wallet::PREV_BALANCE;
+        $wallet->save();
 
         if($data['reference_by']!=null)
         {
             $trax_id = $refer_wallet->user->username.Str::random(8).$user->username;   
-            ReferralTransaction::create([
-                'user_id' => $ref_id,
-                'trax_id' => $trax_id,
-                'transaction_by' => $user->id,
-                'bonus_amount' => $ON_SIGNUP_REF_BONUS,
-                'status' => ReferralTransaction::ON_SIGNUP_STATUS,
-            ]);
+         
+            $referral_transaction = new ReferralTransaction();
+            $referral_transaction->user_id = $ref_id;
+            $referral_transaction->trax_id = $trax_id;
+            $referral_transaction->transaction_by = $user->id;
+            $referral_transaction->bonus_amount = $ON_SIGNUP_REF_BONUS;
+            $referral_transaction->status = ReferralTransaction::ON_SIGNUP_STATUS;
+            $referral_transaction->save();
+            
 
-            MasterTransaction::create([
-                'user_id' => $ref_id,
-                'trax_id' => $trax_id,
-                'amount' => $ON_SIGNUP_REF_BONUS,
-                'charge' => 0,
-                'current_balance' => $refer_current_update_balance,
-                'remarks' => "Sign up referral bonus",
-                'status' => MasterTransaction::CREDITED,
-            ]);
+            $master_transaction = new MasterTransaction();
+            $master_transaction->user_id = $ref_id;
+            $master_transaction->trax_id = $trax_id;
+            $master_transaction->amount = $ON_SIGNUP_REF_BONUS;
+            $master_transaction->charge = 0;
+            $master_transaction->current_balance = $refer_current_update_balance;
+            $master_transaction->remarks = "Sign up referral bonus";
+            $master_transaction->status = MasterTransaction::CREDITED;
+            $master_transaction->save();
+
         }
 
-        Profile::create([
-            'user_id' => $user->id,
-        ]);
+      
+        $profile = new Profile();
+        $profile->user_id = $user->id;
+        $profile->save();
         
         $user_trax = $user->username.Str::random(8);
-        MasterTransaction::create([
-            'user_id' => $user->id,
-            'trax_id' => $user_trax,
-            'amount' => $ON_SIGNUP_BONUS,
-            'charge' => 0,
-            'current_balance' => $user->wallet->current_balance,
-            'remarks' => "Sign up bonus",
-            'status' => MasterTransaction::CREDITED,
-        ]);
+       
+            $master_transaction = new MasterTransaction();
+            $master_transaction->user_id = $user->id;
+            $master_transaction->trax_id = $user_trax;
+            $master_transaction->amount = $ON_SIGNUP_BONUS;
+            $master_transaction->charge = 0;
+            $master_transaction->current_balance = $user->wallet->current_balance;
+            $master_transaction->remarks = "Sign up bonus";
+            $master_transaction->status = MasterTransaction::CREDITED;
+            $master_transaction->save();
         
        
         Notification::create([

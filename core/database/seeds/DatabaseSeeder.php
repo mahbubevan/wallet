@@ -28,8 +28,9 @@ class DatabaseSeeder extends Seeder
         // Wallet::truncate();
         // Profile::truncate();
         // MasterTransaction::truncate();
-        ReferralTransaction::truncate();
+        // ReferralTransaction::truncate();
         // InterestTransaction::truncate();
+
         // factory(User::class,100)->create();
         // factory(Admin::class, 2)->create();
         // factory(Profile::class,100)->create();

@@ -23,7 +23,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach ($ref_trans as $transaction)
+            @foreach ($transactions as $transaction)
             <tr>
               @if($transaction->sender)
                 {{-- {{$transaction->sender->name}} --}}
@@ -39,10 +39,10 @@
                 <span class="text-danger">No Referenced</span>
                 @endif
               </td>
-              <td>{{$transaction->bonus_amount}} ({{$currency}})</td>
-              <td>{{number_format($transaction->sender->wallet->current_balance,2)}} ({{$currency}})</td>
+              <td>{{$transaction->bonus_amount}} ({{$currency ?? ''}})</td>
+              <td>{{number_format($transaction->sender->wallet->current_balance,2)}} ({{$currency ?? ''}})</td>
               @if($transaction->benefit_user)
-                <td>{{number_format($transaction->benefit_user->wallet->current_balance,2)}} ({{$currency}})</td>
+                <td>{{number_format($transaction->benefit_user->wallet->current_balance,2)}} ({{$currency ?? ''}})</td>
                 @else
                 <td><span class="text-danger">No Referenced</span></td>
               @endif
@@ -65,7 +65,7 @@
           </tbody>
         </table>
         <div class="text-center">
-            {{$ref_trans->links()}}
+            {{$transactions->links()}}
         </div>
       </div>
     </div>

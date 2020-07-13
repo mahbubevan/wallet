@@ -69,6 +69,6 @@ class AdminController extends Controller
     public function loginUsingId($id)
     {
         Auth::loginUsingId($id);
-        return redirect()->route('user.profile')->with('success','Logged In As User');
+        return redirect()->route('user.dashboard')->with('success','Logged In As User');
     }
 }
